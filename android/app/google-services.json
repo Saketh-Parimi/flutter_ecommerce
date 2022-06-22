@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "459152641304",
+    "project_id": "shopping-app-37920",
+    "storage_bucket": "shopping-app-37920.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459152641304:android:7d87c80ca52bb61411226d",
+        "android_client_info": {
+          "package_name": "com.saketh_parimi.e_commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459152641304-qlt5eqf06u699jpp5ql8j26i2gcgd134.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVYiHcsa61PshZP20xAs5rzOEBfUSi52E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459152641304-qlt5eqf06u699jpp5ql8j26i2gcgd134.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "459152641304-b9bg7v77vioiq7e34g9ds22blne77fkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sakethParimi.eCommerce"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
