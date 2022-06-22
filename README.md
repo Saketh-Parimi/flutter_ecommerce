@@ -1,10 +1,8 @@
 # e_commerce
 
-A new Flutter project.
+This is a shop app using firebase and flutter. You will have to setup firebase using the firebase docs. You first have to create a firebase project, then add the apps you need and the instructions on how to setup will be there.
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
