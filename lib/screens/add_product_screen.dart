@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../constants.dart';
+
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
 
@@ -44,111 +46,111 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _productController = Get.put(ProductController());
-
     return Scaffold(
       appBar: AppBar(title: Text('Add a product')),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Center(
-                child: GestureDetector(
-                  onTap: () async {
-                    _showImgFromGallery();
-                  },
-                  child: CircleAvatar(
-                    radius: 55,
-                    backgroundColor: Colors.white.withOpacity(.53),
-                    child: convertedImage != null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image.memory(
-                              convertedImage!,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Center(
+                  child: GestureDetector(
+                    onTap: () async {
+                      _showImgFromGallery();
+                    },
+                    child: CircleAvatar(
+                      radius: 55,
+                      backgroundColor: Colors.white.withOpacity(.53),
+                      child: convertedImage != null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.memory(
+                                convertedImage!,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            )
+                          : Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(.6),
+                                  borderRadius: BorderRadius.circular(50)),
                               width: 100,
                               height: 100,
-                              fit: BoxFit.fitHeight,
+                              child: Icon(
+                                Icons.camera_alt,
+                                color: Colors.grey[800],
+                              ),
                             ),
-                          )
-                        : Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(.6),
-                                borderRadius: BorderRadius.circular(50)),
-                            width: 100,
-                            height: 100,
-                            child: Icon(
-                              Icons.camera_alt,
-                              color: Colors.grey[800],
-                            ),
-                          ),
+                    ),
                   ),
                 ),
-              ),
-              CustomTextField(
-                controller: _titleController,
-                icon: Icons.title,
-                hintText: 'Title',
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter value for title';
-                  }
-                },
-              ),
-              CustomTextField(
-                controller: _descriptionController,
-                icon: Icons.description,
-                hintText: 'Description',
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter value for description';
-                  }
-                },
-              ),
-              CustomTextField(
-                controller: _priceController,
-                icon: Icons.price_change,
-                hintText: 'Price',
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter value for price';
-                  }
-                },
-              ),
-              CustomTextField(
-                controller: _qtyController,
-                icon: Icons.numbers,
-                hintText: 'Quantity',
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter value for quantity';
-                  }
-                },
-              ),
-              ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      _productController.addProduct(
-                        ProductModel(
-                            id: 'as',
-                            qty: int.parse(_qtyController.text),
-                            uid: FirebaseAuth.instance.currentUser!.uid,
-                            title: _titleController.text,
-                            description: _descriptionController.text,
-                            price: double.parse(_priceController.text),
-                            imageUrl: ''),
-                        _image,
-                      );
+                CustomTextField(
+                  controller: _titleController,
+                  icon: Icons.title,
+                  hintText: 'Title',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter value for title';
                     }
                   },
-                  child: _productController.isLoading
-                      ? CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : Text("submit"))
-            ],
-          ),
+                ),
+                CustomTextField(
+                  controller: _descriptionController,
+                  icon: Icons.description,
+                  hintText: 'Description',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter value for description';
+                    }
+                  },
+                ),
+                CustomTextField(
+                  controller: _priceController,
+                  icon: Icons.price_change,
+                  hintText: 'Price',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter value for price';
+                    }
+                  },
+                ),
+                CustomTextField(
+                  controller: _qtyController,
+                  icon: Icons.numbers,
+                  hintText: 'Quantity',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter value for quantity';
+                    }
+                  },
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        productController.addProduct(
+                          ProductModel(
+                              id: 'as',
+                              qty: int.parse(_qtyController.text),
+                              uid: FirebaseAuth.instance.currentUser!.uid,
+                              title: _titleController.text,
+                              description: _descriptionController.text,
+                              price: double.parse(_priceController.text),
+                              imageUrl: ''),
+                          _image,
+                        );
+                      }
+                    },
+                    child: productController.isLoading
+                        ? CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : Text("submit"))
+              ],
+            ),
+          ],
         ),
       ),
     );

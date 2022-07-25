@@ -4,6 +4,8 @@ import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../constants.dart';
+
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -12,8 +14,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _authController = AuthController.instance;
-
     return Scaffold(
       appBar: AppBar(title: Text("Login")),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            _authController.loginUser(
+            authController.loginUser(
                 _emailController.text, _passwordController.text);
           },
           child: Text('Sign In!'),

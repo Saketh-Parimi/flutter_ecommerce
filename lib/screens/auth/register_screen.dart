@@ -4,6 +4,8 @@ import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../constants.dart';
+
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
@@ -11,10 +13,10 @@ class RegisterScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  final s = AuthController.instance;
+
   @override
   Widget build(BuildContext context) {
-    final _authController = AuthController.instance;
-
     return Scaffold(
       appBar: AppBar(title: Text("Register")),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -38,7 +40,7 @@ class RegisterScreen extends StatelessWidget {
             obscureText: true),
         ElevatedButton(
           onPressed: () {
-            _authController.registerUser(_usernameController.text,
+            authController.registerUser(_usernameController.text,
                 _emailController.text, _passwordController.text);
           },
           child: Text('Sign Up!'),
