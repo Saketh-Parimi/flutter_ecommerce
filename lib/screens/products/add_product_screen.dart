@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -34,6 +34,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     XFile? image =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
+    // I put setState here because this image isn't associated with any of the controllers.
     setState(() {
       _image = image;
     });
@@ -130,6 +131,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        // I put id as 'as' is because in the addProduct method, we change the id to the document id because we get the doc id after adding it to the database.
                         productController.addProduct(
                           ProductModel(
                               id: 'as',

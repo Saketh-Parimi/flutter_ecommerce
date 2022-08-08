@@ -21,20 +21,34 @@ class CartController extends GetxController {
     return await _ref.where('uid', isEqualTo: uid).get().then((value) {
       final s = value.docs.map((item) => ProductModel.fromSnap(item)).toList();
       userCartProducts.assignAll(s);
-      print(userCartProducts);
     });
   }
 
   void addCartProduct(ProductModel product) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('cart')
-          .add(product.toMap())
-          .then((value) async {
-        Get.snackbar('Successful', 'Successfully added product to cart');
-      });
+      QuerySnapshot snap = await _ref.where("id", isEqualTo: product.id).get();
+      if (snap.docs.isEmpty) {
+        _ref.doc(product.id).set(product.toMap());
+      } else {
+        final updatedQty =
+            (snap.docs.first.data() as Map<String, dynamic>)['qty'] +
+                product.qty;
+        final updatedPrice =
+            (snap.docs.first.data() as Map<String, dynamic>)['price'] +
+                product.price;
+        _ref.doc(product.id).update({
+          "qty": updatedQty,
+          "price": updatedPrice,
+        });
+      }
+      Get.snackbar('Successful', "Successfully added product to cart");
+      getUserCartProducts(FirebaseAuth.instance.currentUser!.uid);
     } catch (e) {
       Get.snackbar('Error adding product to cart', e.toString());
     }
+  }
+
+  void orderProducts() {
+    
   }
 }

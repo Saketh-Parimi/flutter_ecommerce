@@ -50,7 +50,7 @@ class ProductController extends GetxController {
       UploadTask uploadTask = ref.putFile(file);
 
       final String urlLink = await (await uploadTask).ref.getDownloadURL();
-
+      isLoading = false;
       return urlLink;
     } catch (e) {
       Get.snackbar('Error uploading file', e.toString());

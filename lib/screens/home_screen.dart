@@ -1,9 +1,9 @@
 import 'package:e_commerce/constants.dart';
 import 'package:e_commerce/models/product.dart';
-import 'package:e_commerce/screens/add_product_screen.dart';
+import 'package:e_commerce/screens/products/add_product_screen.dart';
 import 'package:e_commerce/screens/cart_items_overview_screen.dart';
-import 'package:e_commerce/screens/product_detail_screen.dart';
-import 'package:e_commerce/screens/your_products_screen.dart';
+import 'package:e_commerce/screens/products/product_detail_screen.dart';
+import 'package:e_commerce/screens/products/your_products_screen.dart';
 import 'package:e_commerce/widgets/badge.dart';
 import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:e_commerce/widgets/number_text_field.dart';
